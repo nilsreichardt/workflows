@@ -1,0 +1,16 @@
+# A workflow that sets the exit code 1 when there is a Git diff.
+
+name: Fail on Git Diffs
+
+on:
+  workflow_call:
+
+jobs:
+  fail-on-git-diffs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check for Git Diffs
+        run: |
+          git add .
+          git diff --exit-code
